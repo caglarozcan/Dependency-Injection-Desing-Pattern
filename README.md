@@ -31,7 +31,7 @@ public class DatabaseLogger : ILogger
 {
 	public string SaveLog(string message)
 	{
-		return "Log bilgisi veritabanına kaydedildi! : [" + DateTime.Now.ToString() + " | " + message + "]";
+		return "Log bilgisi veritabanına kaydedildi! : [" | " + message + "]";
 	}
 }
 ```
