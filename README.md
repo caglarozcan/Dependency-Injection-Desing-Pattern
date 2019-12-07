@@ -65,4 +65,4 @@ if(logManager != null)
 	Console.WriteLine(logManager.Log("Hata Mesajı!"));
 }
 ```
-Yukarıdaki örnek kodda görüldüğü gibi, bağımlılıklar LogManager sınıfı içerisine Dependency Injection yöntemi ile yerine getirilmiştir. Yeni bir ortamda log tutulmak istendiğinde `..Logger` sınıfı yazılmalı ve LogManager içerisine enjekte edilmelidir.
+Yukarıdaki örnek kodda görüldüğü gibi, bağımlılıklar LogManager sınıfı içerisine Dependency Injection yöntemi ile yerine getirilmiştir. Yeni bir ortamda log tutulmak istendiğinde `..Logger` sınıfı yazılmalı ve LogManager içerisine enjekte edilmelidir. Böylece `Loosely Coupled` prensibi yerine getirilmiş olacaktır.
