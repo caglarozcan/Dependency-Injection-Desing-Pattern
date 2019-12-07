@@ -31,7 +31,38 @@ public class DatabaseLogger : ILogger
 {
 	public string SaveLog(string message)
 	{
-		return "Log bilgisi veritabanına kaydedildi! : [" + message + "]";
+		return "Log bilgisi veritabanına kaydedildi! : [" + DateTime.Now.ToString() + " | " + message + "]";
 	}
 }
 ```
+Log alma işlemi için, hangi ortamda kayıt yapılacaksa o ortama iat `..Logger` sınıfı nesnesi LogManager sınıfının constructor metoduna paramete olarak verilir.
+```csharp
+LogManager logManager = null;
+			
+string logType = "database";
+
+switch (logType)
+{
+	case "database":
+		logManager = new LogManager(new DatabaseLogger());
+		break;
+	case "txt":
+		logManager = new LogManager(new TextLogger());
+		break;
+	case "mail":
+		logManager = new LogManager(new MailLogger());
+		break;
+	case "xml":
+		logManager = new LogManager(new XMLLogger());
+		break;
+	default:
+		Console.WriteLine("Geçersiz Log Türü!");
+		break;
+}
+
+if(logManager != null)
+{
+	Console.WriteLine(logManager.Log("Hata Mesajı!"));
+}
+```
+Yukarıdaki örnek kodda görüldüğü gibi, bağımlılıklar LogManager sınıfı içerisine Dependency Injection yöntemi ile yerine getirilmiştir. Yeni bir ortamda log tutulmak istendiğinde `..Logger` sınıfı yazılmalı ve LogManager içerisine enjekte edilmelidir.
